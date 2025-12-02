@@ -1,1 +1,101 @@
-✅ CAPSTONE PROJECT SUBMISSION: ALX Project Nexus1. Project Overview & ContextProject Name: ALX Project NexusProgram: ALX ProDev Frontend & Backend EngineeringMentor/Reviewer: [Name of Reviewer]Submission Date: [Date]Deployed URL (Live Demo): [Link to live frontend deployment]Deployed API URL: [Link to live API deployment (e.g., on Render/Vercel)]GitHub Repository: [Link to this repository]2. Key Features ImplementedProduct Catalog: Browse, filter, sort, and paginate products.Product Search: Real-time search functionality on the API.Detailed Views: Single product view with complete information.Responsive Design: Fully functional and aesthetically pleasing on mobile and desktop devices.Robust API: Handled by Django REST Framework with secure, performant endpoints.Containerization: Full Docker setup for consistent development and deployment environments.3. Technology Stack JustificationLayerTechnologyJustificationBackendPython, Django, DRFChosen for rapid development, security features, and robust ORM. DRF provides powerful serialization for building scalable APIs.DatabasePostgreSQLSelected for reliability, ACID compliance, and advanced querying features over SQLite for a production environment.FrontendReact, TypeScript, ViteModern, high-performance stack. TypeScript for strong type checking and maintainability. Vite for fast development and build times.StylingTailwind CSSUtility-first framework for rapid, responsive, and maintainable styling without writing custom CSS classes.ContainerizationDockerEnsures dependency isolation and environment parity between development, testing, and production.4. Key Challenges & SolutionsChallengeSolution ImplementedCORS/SecurityConfigured django-cors-headers explicitly in settings.py to allow the frontend origin(s) and enforce necessary headers.Initial PerformanceImplemented database query optimization (e.g., select_related, prefetch_related) and added caching for common catalog queries.Docker NetworkingUsed a docker-compose.yml file to set up a dedicated bridge network, allowing the Django service to communicate directly with the PostgreSQL service via their service names (e.g., db).5. Instructions for ReviewerSetup/Local Run: Refer to the main README.md for Docker setup instructions.Review Focus: Please pay special attention to the use of:TypeScript for type safety in frontend/.DRF Serializers/ViewSets in backend/catalog/.RTK Query for data fetching and caching in frontend/src/app/api/api.ts.Thank you for taking the time to review my capstone project.
+✅ CAPSTONE PROJECT SUBMISSION: ALX Project Nexus
+
+1. Project Overview & Context
+
+Project Name: ALX Project Nexus
+
+Program: ALX ProDev Frontend & Backend Engineering
+
+Mentor/Reviewer: [Name of Reviewer]
+
+Submission Date: [Date]
+
+Deployed URL (Live Demo): [Link to live frontend deployment]
+
+Deployed API URL: [Link to live API deployment (e.g., on Render/Vercel)]
+
+GitHub Repository: [Link to this repository]
+
+2. Key Features Implemented
+
+Product Catalog: Browse, filter, sort, and paginate products.
+
+Product Search: Real-time search functionality on the API.
+
+Detailed Views: Single product view with complete information.
+
+Responsive Design: Fully functional and aesthetically pleasing on mobile and desktop devices.
+
+Robust API: Handled by Django REST Framework with secure, performant endpoints.
+
+Containerization: Full Docker setup for consistent development and deployment environments.
+
+3. Technology Stack Justification
+
+Layer
+
+Technology
+
+Justification
+
+Backend
+
+Python, Django, DRF
+
+Chosen for rapid development, security features, and robust ORM. DRF provides powerful serialization for building scalable APIs.
+
+Database
+
+PostgreSQL
+
+Selected for reliability, ACID compliance, and advanced querying features over SQLite for a production environment.
+
+Frontend
+
+React, TypeScript, Vite
+
+Modern, high-performance stack. TypeScript for strong type checking and maintainability. Vite for fast development and build times.
+
+Styling
+
+Tailwind CSS
+
+Utility-first framework for rapid, responsive, and maintainable styling without writing custom CSS classes.
+
+Containerization
+
+Docker
+
+Ensures dependency isolation and environment parity between development, testing, and production.
+
+4. Key Challenges & Solutions
+
+Challenge
+
+Solution Implemented
+
+CORS/Security
+
+Configured django-cors-headers explicitly in settings.py to allow the frontend origin(s) and enforce necessary headers.
+
+Initial Performance
+
+Implemented database query optimization (e.g., select_related, prefetch_related) and added caching for common catalog queries.
+
+Docker Networking
+
+Used a docker-compose.yml file to set up a dedicated bridge network, allowing the Django service to communicate directly with the PostgreSQL service via their service names (e.g., db).
+
+5. Instructions for Reviewer
+
+Setup/Local Run: Refer to the main README.md for Docker setup instructions.
+
+Review Focus: Please pay special attention to the use of:
+
+TypeScript for type safety in frontend/.
+
+DRF Serializers/ViewSets in backend/catalog/.
+
+RTK Query for data fetching and caching in frontend/src/app/api/api.ts.
+
+Thank you for taking the time to review my capstone project.
