@@ -1,3 +1,4 @@
+87% of storage used … If you run out, you can't create, edit, and upload files. Get 100 GB of storage for SEK 19 SEK 5/month for 3 months.
 # 🚀 ALX Project Nexus - ProDev Engineering Documentation
 
 A comprehensive knowledge hub documenting the journey through ALX Professional Development (ProDev) Frontend and Backend Engineering programs. This repository showcases mastery of full-stack development, from mobile applications to scalable backend systems.
