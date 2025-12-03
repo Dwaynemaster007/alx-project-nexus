@@ -5,3 +5,4 @@ python-decouple
 django-cors-headers
 django-filter
 Pillow
+gunicorn
