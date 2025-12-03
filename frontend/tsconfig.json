@@ -2,7 +2,8 @@
   "compilerOptions": {
     "target": "ES2020",
     "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    // FIX for TS6046: Corrected "DOMIterable" to "DOM.Iterable"
+    "lib": ["ES2020", "DOM", "DOM.Iterable"], 
     "module": "ESNext",
     "skipLibCheck": true,
 
@@ -20,6 +21,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src"]
+  // FIX for TS6053: Removed the "references" block so Vercel does not look for tsconfig.node.json
 }
