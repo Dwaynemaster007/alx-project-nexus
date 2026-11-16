@@ -19,7 +19,7 @@ PYTHON / DJANGO
 
 Byte-compiled / optimized / DLL files
 
-pycache/
+__pycache__/
 *.py[cod]
 *$py.class
 
@@ -50,3 +50,4 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 .parcel-cache
+!.env.example
