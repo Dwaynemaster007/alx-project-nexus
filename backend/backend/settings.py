@@ -165,7 +165,8 @@ REST_FRAMEWORK = {
 # CORS HEADERS CONFIGURATION
 # ----------------------------------------------------------------------
 # Allow specific origins to access the API (for frontend)
-CORS_ALLOWED_ORIGINS = _csv(config('CORS_ALLOWED_ORIGINS', default='http://localhost:5173'))
+# Origins must not end in '/', so strip any trailing slash from pasted URLs
+CORS_ALLOWED_ORIGINS = [o.rstrip('/') for o in _csv(config('CORS_ALLOWED_ORIGINS', default='http://localhost:5173'))]
 
 # Allow Cookies and Credentials to be sent (necessary for secure API calls)
 CORS_ALLOW_CREDENTIALS = True
