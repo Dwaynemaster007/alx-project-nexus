@@ -1,4 +1,5 @@
-from rest_framework import viewsets, mixins
+from rest_framework import viewsets, mixins, permissions
+from rest_framework.filters import OrderingFilter, SearchFilter
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status
@@ -28,10 +29,16 @@ class ProductViewSet(viewsets.ModelViewSet):
         Prefetch('reviews', queryset=Review.objects.all().order_by('-created_at'))
     )
     serializer_class = ProductSerializer
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_class = ProductFilter
     search_fields = ['name', 'description', 'category__title'] # Use DRF's search feature too
     ordering_fields = ['name', 'price', 'stock_quantity', 'created_at']
+
+    def get_permissions(self):
+        # Anyone can browse products and post reviews; only admins can change products
+        if self.action in ('list', 'retrieve', 'reviews'):
+            return [permissions.AllowAny()]
+        return [permissions.IsAdminUser()]
 
     # --- Custom Action for Reviews (Nested Route) ---
 

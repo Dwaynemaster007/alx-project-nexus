@@ -77,3 +77,22 @@ List all available product categories.
 GET/POST
 
 List and create reviews for a product.
+
+## Deploying on Render
+
+| Setting | Value |
+| --- | --- |
+| Root directory | `backend` |
+| Build command | `./build.sh` (installs requirements, collects static files, runs migrations) |
+| Start command | `gunicorn backend.wsgi` |
+
+Environment variables to set in the Render dashboard:
+
+| Variable | Example |
+| --- | --- |
+| `SECRET_KEY` | a long random string |
+| `DATABASE_URL` | the Internal Database URL of your Render PostgreSQL instance |
+| `CORS_ALLOWED_ORIGINS` | your frontend URL, e.g. `https://your-frontend.vercel.app` |
+| `DEBUG` | `False` |
+
+Render's own hostname is added to `ALLOWED_HOSTS` automatically. To load sample data, run `python manage.py seed_data` from the Render shell.

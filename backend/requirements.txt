@@ -6,3 +6,5 @@ django-cors-headers
 django-filter
 Pillow
 gunicorn
+dj-database-url
+whitenoise
