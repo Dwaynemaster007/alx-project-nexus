@@ -20,7 +20,7 @@ export const productsApi = baseApi.injectEndpoints({
      */
     getProducts: builder.query<PaginatedResponse<Product>, ProductQueryParams>({
       query: (params) => ({
-        url: 'products',
+        url: 'products/',
         params: { 
           // Default limit/offset handled by Django, but explicitly include all possible filters
           limit: params.limit,
@@ -49,7 +49,7 @@ export const productsApi = baseApi.injectEndpoints({
      * Corresponds to: GET /api/products/{id}/
      */
     getProductById: builder.query<Product, number>({
-      query: (id) => `products/${id}`,
+      query: (id) => `products/${id}/`,
       providesTags: (result, error, id) => [{ type: 'Product', id }],
     }),
 
@@ -58,11 +58,10 @@ export const productsApi = baseApi.injectEndpoints({
      * Corresponds to: GET /api/categories/
      */
     getCategories: builder.query<Category[], void>({
-      query: () => 'categories',
-      transformResponse: (response: Category[]) => {
-        // Return only the list of categories, assuming the API returns a direct list
-        return response;
-      },
+      query: () => 'categories/',
+      // Accept both a plain list and a paginated { results: [...] } response
+      transformResponse: (response: Category[] | PaginatedResponse<Category>) =>
+        Array.isArray(response) ? response : response.results,
       providesTags: (result) =>
         result
           ? [

@@ -1,15 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Menu, X, Search, ShoppingCart } from 'lucide-react';
-import { toggleSidebar } from '../features/products/productsSlice';
+import { toggleSidebar, setSearch } from '../features/products/productsSlice';
 import { AppDispatch, RootState } from '../app/store';
-
-// We'll use this mock function for demonstration purposes
-const mockSearchFunction = (term: string) => {
-    console.log(`Searching for: ${term}`);
-    // In a real scenario, this would trigger a dispatch to refetch products with the search term
-    // e.g., dispatch(productsApi.endpoints.getProducts.initiate({ search: term, ...otherParams }));
-};
 
 const Navbar: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -18,9 +11,8 @@ const Navbar: React.FC = () => {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    if (searchTerm.trim()) {
-      mockSearchFunction(searchTerm.trim());
-    }
+    // An empty search shows every product again
+    dispatch(setSearch(searchTerm.trim()));
   };
 
   return (

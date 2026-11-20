@@ -16,6 +16,7 @@ class CategoryViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     """
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    pagination_class = None  # a short list, so return it unpaginated
     # Caching or other optimizations can be added here
     # ordering_fields = ['title']
 

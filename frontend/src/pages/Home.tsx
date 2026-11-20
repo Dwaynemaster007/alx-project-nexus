@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../app/store';
 import { useGetProductsQuery } from '../features/products/productsApi';
-import { setSort } from '../features/products/productsSlice';
+import { setSort, setFilters, setOffset, ProductFilters } from '../features/products/productsSlice';
 
 // Components
 import ProductCard from '../components/ProductCard';
@@ -15,26 +15,20 @@ import { toggleSidebar } from '../features/products/productsSlice';
 
 // Define the initial state for fetching parameters
 const PAGE_SIZE = 20; // Matches DRF default PAGE_SIZE
-interface AppliedFilters {
-  category_slug?: string;
-  min_price?: number;
-  max_price?: number;
-}
-
 const Home: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const currentSort = useSelector((state: RootState) => state.products.currentSort);
 
-  // State for pagination and filtering
-  const [offset, setOffset] = useState(0);
-  const [appliedFilters, setAppliedFilters] = useState<AppliedFilters>({});
+  // Pagination, filters and search live in the Redux slice so the navbar and sidebar can change them
+  const { offset, filters, search } = useSelector((state: RootState) => state.products);
   
   // Combine all query parameters
   const queryParams = {
     limit: PAGE_SIZE,
     offset,
     ordering: currentSort,
-    ...appliedFilters,
+    ...filters,
+    search: search || undefined,
     // Add is_available: true if we only want available products
     is_available: true,
   };
@@ -46,21 +40,17 @@ const Home: React.FC = () => {
   const totalCount = data?.count || 0;
   
   // Function called by FilterSidebar when filters are applied
-  const handleApplyFilters = (filters: AppliedFilters) => {
-    // Reset offset to 0 when new filters are applied
-    setOffset(0);
-    setAppliedFilters(filters);
+  const handleApplyFilters = (newFilters: ProductFilters) => {
+    dispatch(setFilters(newFilters));
   };
   
   // Function called by SortDropdown
   const handleSortChange = (sortKey: string) => {
-    // Reset offset to 0 when sorting changes
-    setOffset(0); 
     dispatch(setSort(sortKey));
   };
   
   const handlePageChange = (newOffset: number) => {
-    setOffset(newOffset);
+    dispatch(setOffset(newOffset));
     window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top on page change
   };
 

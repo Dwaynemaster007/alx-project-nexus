@@ -32,7 +32,7 @@ export interface Product {
   id: number;
   name: string;
   description: string;
-  price: number;
+  price: number | string; // DRF serialises DecimalField as a string
   stock_quantity: number;
   image_url: string;
   is_available: boolean;

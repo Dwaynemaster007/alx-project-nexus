@@ -2,7 +2,9 @@ import { useState } from 'react';
 import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import { RootState } from './app/store';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setFilters, ProductFilters } from './features/products/productsSlice';
+import { AppDispatch } from './app/store';
 import FilterSidebar from './components/FilterSidebar';
 
 
@@ -12,14 +14,10 @@ function App() {
   // Simple check for the sidebar state from Redux
   const isSidebarOpen = useSelector((state: RootState) => state.products.isSidebarOpen);
 
-  // FIX FOR TS2741: Define the required prop function here.
-  // The 'filters' parameter type should match what FilterSidebar returns (likely an object)
-  const handleApplyFilters = (filters: any) => {
-    // In a real application, this function would dispatch an action 
-    // to Redux or trigger a data fetch based on the applied filters.
-    console.log("Filters applied:", filters);
+  const dispatch = useDispatch<AppDispatch>();
+  const handleApplyFilters = (filters: ProductFilters) => {
+    dispatch(setFilters(filters));
   };
-
 
   // In a simple app, we only render the Home component for the catalog view.
   const renderPage = () => {
